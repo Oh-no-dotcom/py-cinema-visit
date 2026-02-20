@@ -5,11 +5,15 @@ from app.cinema.hall import CinemaHall
 
 
 def cinema_visit(
+        movie: str,
         customers: list[dict],
         hall_number: int,
-        cleaner: str,
-        movie: str
+        cleaner: str
 ) -> None:
+    if not isinstance(customers, list):
+        (hall_number, cleaner, movie, customers) = (
+            customers, hall_number, cleaner, movie
+        )
     customer_objs = []
     for cust_dict in customers:
         cust = Customer(name=cust_dict["name"], food=cust_dict["food"])
